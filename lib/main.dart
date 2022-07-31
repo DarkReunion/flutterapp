@@ -1,5 +1,6 @@
-/*
-import 'package:flutter/material.dart';) {
+import 'package:flutter/material.dart';
+
+void main() {
   runApp(const MyApp());
 }
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '我好兴奋啊哈哈',
+      title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -21,9 +22,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: '这是标题'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -56,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter+=2;
+      _counter++;
     });
   }
 
@@ -83,102 +84,32 @@ class _MyHomePageState extends State<MyHomePage> {
           // children horizontally, and tries to be as tall as its parent.
           //
           // Invoke "debug painting" (press "p" in the console, choose the
-*/
-
-import 'package:android_window/main.dart' as android_window;
-import 'package:flutter/material.dart';
-
-import 'android_window.dart';
-
-@pragma('vm:entry-point')
-void androidWindow() {
-  runApp(const AndroidWindowApp());
-}
-
-void main() {
-  runApp(const App());
-}
-
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Flutter Demo', home: HomePage());
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    android_window.setHandler((name, data) async {
-      switch (name) {
-        case 'hello':
-          showSnackBar(context, 'message from android window: $data');
-          return 'hello android window';
-      }
-      return null;
-    });
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(padding: const EdgeInsets.all(16), children: [
-          ElevatedButton(
-            onPressed: () async {
-              showSnackBar(
-                  context, '${await android_window.canDrawOverlays()}');
-            },
-            child: const Text('Check can draw overlays'),
-          ),
-          const ElevatedButton(
-            onPressed: android_window.requestPermission,
-            child: Text('Request overlay display permission'),
-          ),
-          ElevatedButton(
-            onPressed: () => android_window.open(
-              size: const Size(600, 600),
-              position: const Offset(200, 200),
-              focusable: true,
+          // "Toggle Debug Paint" action from the Flutter Inspector in Android
+          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+          // to see the wireframe for each widget.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
             ),
-            child: const Text('Open android window'),
-          ),
-          const ElevatedButton(
-            onPressed: android_window.close,
-            child: Text('Close android window'),
-          ),
-          ElevatedButton(
-            onPressed: () => android_window.resize(600, 400),
-            child: const Text('resize(600, 400)'),
-          ),
-          ElevatedButton(
-            onPressed: () => android_window.resize(400, 600),
-            child: const Text('resize(400, 600)'),
-          ),
-          ElevatedButton(
-            onPressed: () => android_window.setPosition(0, 0),
-            child: const Text('setPosition(0, 0)'),
-          ),
-          ElevatedButton(
-            onPressed: () => android_window.setPosition(300, 300),
-            child: const Text('setPosition(300, 300)'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              final response = await android_window.post(
-                'hello',
-                'hello android window',
-              );
-              showSnackBar(context, 'response from android window: $response');
-            },
-            child: const Text('Send message to android window'),
-          ),
-        ]),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ],
+        ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-
-  showSnackBar(BuildContext context, String title) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(title)));
   }
 }
