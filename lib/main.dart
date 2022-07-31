@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'android_window.dart';
+import 'package:android_window/main.dart' as android_window;
 
 void main() {
   runApp(const MyApp());
