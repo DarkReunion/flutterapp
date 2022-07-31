@@ -1,3 +1,42 @@
+import 'package:android_window/main.dart' as android_window;
+import 'package:flutter/material.dart';
+
+import 'android_window.dart';
+
+@pragma('vm:entry-point')
+void androidWindow() {
+  runApp(const AndroidWindowApp());
+}
+
+void main() {
+  runApp(const App());
+}
+
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(title: 'Flutter Demo', home: HomePage());
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => android_window.open(size: const Size(300, 200)),
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+
+/*
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:android_window/main.dart' as android_window;
@@ -115,3 +154,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
