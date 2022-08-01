@@ -25,17 +25,31 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+      openFloating();
+    });
+  }
+
+  void openFloating() {
+    FlutterOverlayWindow.showOverlay();
+  }
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: TextButton(
-        child: Text("打开悬浮窗"),
-        onPressed: () {
-          FlutterOverlayWindow.showOverlay();
-        },
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          floatingActionButton: FloatingActionButton(
+                    onPressed: _incrementCounter,
+                            tooltip: 'Increment',
+                                    child: const Icon(Icons.add),
+                                          )
+          )
+        ));
   }
 }
 
