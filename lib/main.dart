@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_overlay_window_example/home_page.dart';
-import 'package:flutter_overlay_window_example/overlays/messanger_chathead.dart';
+import 'package:flutter_overlay_window/flutter_overlay_window.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +12,7 @@ void overlayMain() {
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MessangerChatHead(),
+      home: Text("我是悬浮窗"),
     ),
   );
 }
@@ -30,7 +29,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: TextButton(
+        child: Text("打开悬浮窗"),
+        onPressed: () {
+          FlutterOverlayWindow.showOverlay();
+        },
+      ),
     );
   }
 }
