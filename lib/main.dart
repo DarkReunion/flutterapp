@@ -1,40 +1,39 @@
-import 'package:android_window/main.dart' as android_window;
 import 'package:flutter/material.dart';
-
-import 'android_window.dart';
-
-@pragma('vm:entry-point')
-void androidWindow() {
-  runApp(const AndroidWindowApp());
-}
+import 'package:flutter_overlay_window_example/home_page.dart';
+import 'package:flutter_overlay_window_example/overlays/messanger_chathead.dart';
 
 void main() {
-  runApp(const App());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
 }
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Flutter Demo', home: HomePage());
-  }
+@pragma("vm:entry-point")
+void overlayMain() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MessangerChatHead(),
+    ),
+  );
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => android_window.open(size: const Size(300, 200)),
-        child: const Icon(Icons.add),
-      ),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
     );
   }
 }
-
 
 /*
 import 'package:flutter/material.dart';

@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutterapp">
+   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
    <application
         android:label="flutterapp"
         android:name="${applicationName}"
@@ -25,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service android:name="flutter.overlay.window.flutter_overlay_window.OverlayService" android:exported="false" />
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
