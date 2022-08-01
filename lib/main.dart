@@ -43,13 +43,12 @@ class _MyAppState extends State<MyApp> {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          floatingActionButton: FloatingActionButton(
-                    onPressed: _incrementCounter,
-                            tooltip: 'Increment',
-                                    child: const Icon(Icons.add),
-                                          )
-          )
-        );
+            /*  floatingActionButton: FloatingActionButton(
+              onPressed: _incrementCounter,
+              tooltip: 'Increment',
+              child: const Icon(Icons.add))
+         */
+            ));
   }
 }
 
